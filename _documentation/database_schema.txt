@@ -1,0 +1,15 @@
+https://dbdiagram.io/d
+
+Table course as C {
+	id int [pk, increment]
+	course_name varchar
+	category_name varchar
+	subcategory_name varchar
+	level varchar
+	username varchar
+	real_price decimal(10,2)
+	real_price decimal(10,2)
+	discount int
+	course_score decimal(10,2)
+	users int
+}
