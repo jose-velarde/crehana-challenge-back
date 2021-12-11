@@ -24,3 +24,6 @@ pip install whitenoise
 
 secret key
 https://medium.com/@natmakesthings/hiding-secret-key-in-django-deployment-on-heroku-59b9640819a
+check that .env is utf-8
+
+heroku local:run python manage.py runserver

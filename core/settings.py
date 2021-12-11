@@ -34,7 +34,7 @@ if READ_DOT_ENV_FILE:
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = env["SECRET_KEY"]
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -95,14 +95,13 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-pw = env('pw')
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "jose-velarde-drf",
         "USER": "Jose",
-        "PASSWORD": pw,
+        "PASSWORD": env('DB_PASSWORD'),
         "HOST": "localhost",
         "PORT": "",
     }
