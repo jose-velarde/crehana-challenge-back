@@ -2,7 +2,7 @@ venv
 celerative_task1/__pycache__
 core/__pycache__/
 crehana_store/__pycache__
-celerative_task1/migrations/
+celerative_task1/migrations/__pycache__/
 password.txt
 core/__pycache__/settings.cpython-38.pyc
 .env
