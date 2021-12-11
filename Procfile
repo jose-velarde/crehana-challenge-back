@@ -1,1 +1,1 @@
-web: gunicorn crehana-challenge-back.wsgi --log-file -
+web: gunicorn core.wsgi --log-file -
