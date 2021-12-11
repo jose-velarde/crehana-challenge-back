@@ -1,0 +1,8 @@
+venv
+celerative_task1/__pycache__
+core/__pycache__/
+crehana_store/__pycache__
+crehana_store/migrations/
+celerative_task1/migrations/
+password.txt
+core/__pycache__/settings.cpython-38.pyc
