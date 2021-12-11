@@ -9,7 +9,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 # environ.Env.read_env()
 
@@ -53,7 +53,7 @@ engine = create_engine(
 )
 
 #! Data process
-courses = pd.read_excel(os.path.join(BASE_DIR, "_documentation\courses_list.xlsx"), sheet_name="Query result")
+courses = pd.read_excel(os.path.join(BASE_DIR, "_documentation/courses_list.xlsx"), sheet_name="Query result")
 courses_course = (
     courses[
         [
