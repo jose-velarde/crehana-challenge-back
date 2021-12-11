@@ -7,3 +7,4 @@ celerative_task1/migrations/
 password.txt
 core/__pycache__/settings.cpython-38.pyc
 .env
+staticfiles/
