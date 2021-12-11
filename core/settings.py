@@ -162,7 +162,7 @@ REST_FRAMEWORK = {
     "COERCE_DECIMAL_TO_STRING": False,
 }
 
-ALLOWED_HOSTS = ["https://localhost:3000", "http://localhost:3000", "127.0.0.1"]
+ALLOWED_HOSTS = ["https://localhost:3000", "http://localhost:3000", "127.0.0.1", "jose-velarde-drf.herokuapp.com"]
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = ("https://localhost:3000", "http://localhost:3000", "http://127.0.0.1:8000")
