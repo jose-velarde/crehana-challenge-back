@@ -7,6 +7,7 @@ py -m venv venv
 .\venv\Scripts\activate
 pip install django
 pip install psycopg2
+pip install sqlalchemy
 
 django-admin startproject core .
 py manage.py startapp crehana_store
@@ -14,3 +15,9 @@ pip install black
 py manage.py migrate
 py manage.py createsuperuser
 py manage.py runserver
+
+https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Deployment
+
+pip install gunicorn 
+pip install dj-database-url
+pip install whitenoise
