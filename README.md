@@ -16,14 +16,26 @@ py manage.py migrate
 py manage.py createsuperuser
 py manage.py runserver
 
+# Deploying to Heroku
+
 https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Deployment
+
+create Procfile with projectname.wsgi (core.wsgi)
+create Procfile.windows: web: python manage.py runserver
 
 pip install gunicorn 
 pip install dj-database-url
 pip install whitenoise
 
+pip install django-environ
+
 secret key
 https://medium.com/@natmakesthings/hiding-secret-key-in-django-deployment-on-heroku-59b9640819a
+
 check that .env is utf-8
+
+run makemigrations locally push and migrate, delete migrations if it isn't working
+
+heroku run python load_courses.py
 
 heroku local:run python manage.py runserver

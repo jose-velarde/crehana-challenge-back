@@ -163,7 +163,7 @@ REST_FRAMEWORK = {
 ALLOWED_HOSTS = ["https://localhost:3000", "http://localhost:3000", "127.0.0.1", "jose-velarde-drf.herokuapp.com"]
 CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = ("https://localhost:3000", "http://localhost:3000", "http://127.0.0.1:8000")
+CORS_ORIGIN_WHITELIST = ("https://localhost:3000", "http://localhost:3000", "http://127.0.0.1:8000", "https://crehana-challenge-front.vercel.app")
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
@@ -174,7 +174,6 @@ DATABASES["default"].update(db_from_env)
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-# STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 django_heroku.settings(locals())
