@@ -1,6 +1,8 @@
 # import sqlite3
 import os
 
+import dj_database_url
+
 # import environ
 import pandas as pd
 from sqlalchemy import create_engine
@@ -20,7 +22,6 @@ from sqlalchemy import create_engine
 
 #! Postgres heroku
 
-import dj_database_url
 
 DATABASES = {
     "default": {
@@ -39,11 +40,11 @@ DATABASES["default"].update(db_from_env)
 
 engine = create_engine(
     "postgresql://{}:{}@{}:{}/{}".format(
-        DATABASES["default"].USER,
-        DATABASES["default"].PASSWORD,
-        DATABASES["default"].HOST,
-        DATABASES["default"].PORT,
-        DATABASES["default"].NAME,
+        DATABASES["default"]["USER"],
+        DATABASES["default"]["PASSWORD"],
+        DATABASES["default"]["HOST"],
+        DATABASES["default"]["PORT"],
+        DATABASES["default"]["NAME"],
     )
 )
 
