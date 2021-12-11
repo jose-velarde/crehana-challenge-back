@@ -34,8 +34,8 @@ if READ_DOT_ENV_FILE:
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = env("DEBUG")
+# DEBUG = True
+DEBUG = env("DEBUG")
 
 # Application definition
 
