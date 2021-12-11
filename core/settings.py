@@ -12,21 +12,33 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-import pandas as pd
+
+import environ
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
+# Take environment variables from .env file
+if READ_DOT_ENV_FILE:
+    environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-login = pd.read_csv(BASE_DIR / "password.txt")
-SECRET_KEY = login["SECRET_KEY"][0]
+
+SECRET_KEY = env["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = False
+DEBUG = env('DEBUG')
 
 # Application definition
 
@@ -47,7 +59,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -59,7 +71,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = "core.urls"
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
-
 
 
 TEMPLATES = [
@@ -84,16 +95,16 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-pw = login["PW"][0]
+pw = env('pw')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jose-velarde-drf',
-        'USER': 'Jose',
-        'PASSWORD': pw,
-        'HOST': 'localhost',
-        'PORT': '',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "jose-velarde-drf",
+        "USER": "Jose",
+        "PASSWORD": pw,
+        "HOST": "localhost",
+        "PORT": "",
     }
 }
 
@@ -134,7 +145,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATIC_URL = "/static/"
 # Default primary key field type
@@ -152,16 +163,17 @@ REST_FRAMEWORK = {
     "COERCE_DECIMAL_TO_STRING": False,
 }
 
-ALLOWED_HOSTS = ["https://localhost:3000","http://localhost:3000", '127.0.0.1']
+ALLOWED_HOSTS = ["https://localhost:3000", "http://localhost:3000", "127.0.0.1"]
 CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = ("https://localhost:3000","http://localhost:3000", 'http://127.0.0.1:8000')
+CORS_ORIGIN_WHITELIST = ("https://localhost:3000", "http://localhost:3000", "http://127.0.0.1:8000")
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
+
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+DATABASES["default"].update(db_from_env)
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

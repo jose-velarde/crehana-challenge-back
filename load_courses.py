@@ -1,16 +1,19 @@
 # import sqlite3
 import pandas as pd
-import psycopg2
+import os 
 from sqlalchemy import create_engine
+import environ
+environ.Env.read_env()
 
 #! DB connection
 # SQLite
 # con = sqlite3.connect("db.sqlite3")
 
 # Postgres
-login = pd.read_csv("password.txt")
-pw = login.iloc[0]["PW"]
+# login = pd.read_csv("password.txt")
+# pw = login.iloc[0]["PW"]
 
+pw = os.environ['SECRET_KEY']
 engine = create_engine('postgresql://{}:{}@localhost:5432/{}'.format('Jose', pw, 'jose-velarde-drf'))
 
 #! Data loading

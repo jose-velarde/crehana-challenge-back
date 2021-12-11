@@ -21,3 +21,6 @@ https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Deployment
 pip install gunicorn 
 pip install dj-database-url
 pip install whitenoise
+
+secret key
+https://medium.com/@natmakesthings/hiding-secret-key-in-django-deployment-on-heroku-59b9640819a
