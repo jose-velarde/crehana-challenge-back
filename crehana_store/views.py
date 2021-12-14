@@ -11,16 +11,16 @@ from core.pagination import NoPagination
 
 class SubcategoryViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = NoPagination
-    queryset = Subcategory.objects.all()
+    queryset = Subcategory.objects.all().order_by('id')
     serializer_class = SubcategorySerializer
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = NoPagination
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by('id')
     serializer_class = CategorySerializer
 
 class CourseViewSet(viewsets.ReadOnlyModelViewSet):
 
     filter_class = CourseFilter
-    queryset = Course.objects.all()
+    queryset = Course.objects.all().order_by('id')
     serializer_class = CourseSerializer
