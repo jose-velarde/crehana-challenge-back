@@ -21,6 +21,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("celerative/", include("celerative_task1.urls", namespace="celerative_task1")),
     path("crehana/", include("crehana_store.urls", namespace="crehana_store")),
+    path("account/", include("account.urls", namespace="account")),
     path("", AppsView.as_view())
 ]
 

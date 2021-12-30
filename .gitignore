@@ -9,3 +9,6 @@ core/__pycache__/settings.cpython-38.pyc
 staticfiles/
 crehana_store/migrations/__pycache__/
 Procfile.windows
+account/__pycache__
+account/migrations/__init__.py
+account/migrations/__pycache__/__init__.cpython-38.pyc

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "django_filters",
     "crehana_store",
+    "account",
     "celerative_task1",
 ]
 
@@ -154,16 +155,53 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
     "DEFAULT_PAGINATION_CLASS": "core.pagination.CustomPagination",
     "PAGE_SIZE": 12,
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     "COERCE_DECIMAL_TO_STRING": False,
 }
 
-ALLOWED_HOSTS = ["https://localhost:3000", "http://localhost:3000", "127.0.0.1", "jose-velarde-drf.herokuapp.com"]
-CORS_ORIGIN_ALLOW_ALL = False
+CSRF_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_HTTPONLY = True
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_AGE = 8 * 3600
+CSRF_COOKIE_SECURE = True
 
-CORS_ORIGIN_WHITELIST = ("https://localhost:3000", "http://localhost:3000", "http://127.0.0.1:8000", "https://crehana-challenge-front.vercel.app")
+SESSION_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_AGE = 8 * 3600
+SESSION_COOKIE_SECURE = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:3000",
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:8000",
+    "https://crehana-challenge-front.vercel.app",
+]
+
+ALLOWED_HOSTS = [
+    "https://localhost:3000",
+    "http://localhost:3000",
+    "127.0.0.1",
+    "localhost",
+    "jose-velarde-drf.herokuapp.com",
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://localhost:3000",
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:8000",
+    "https://crehana-challenge-front.vercel.app",
+]
+
+CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken", "Set-Cookie"]
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
