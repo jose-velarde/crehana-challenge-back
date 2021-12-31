@@ -190,6 +190,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "jose-velarde-drf.herokuapp.com",
+    "https://crehana-challenge-front.vercel.app"
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
