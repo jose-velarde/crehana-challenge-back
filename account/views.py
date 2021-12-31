@@ -1,7 +1,10 @@
-from django.http import request
+import json
+
+from django.contrib.auth import authenticate, login
 from django.http.response import JsonResponse
 from django.middleware.csrf import get_token
-from django.shortcuts import render
+from django.views.decorators.http import require_POST
+
 
 # Create your views here.
 def get_crsf(request):
@@ -11,9 +14,22 @@ def get_crsf(request):
 
     return response
 
-# class LoginViewSet(viewsets.ViewSet):
-#     serializer_class = LoginSerializer
 
+@require_POST
+def loginView(request):
+    data = json.loads(request.body)
+    username = data.get("username")
+    password = data.get("password")
+
+    if username is None or password is None:
+        return JsonResponse({"info": "Username and Password are requried"})
+    
+    user = authenticate(username=username, password=password)
+
+    if user is None:
+        return JsonResponse({"info": "Username does not exist"}, status=400)
+    login(request, user)
+    return JsonResponse({"info":"User logged in successfully"})
 
 # class WhoamiViewSet(viewsets.ViewSet):
 #     serializer_class = WhoamiSerializer

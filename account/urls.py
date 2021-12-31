@@ -5,7 +5,9 @@ from . import views
 app_name = "account"
 
 urlpatterns = [
-    path("crsf", views.get_crsf, name="api-crsf")
+    path("crsf/", views.get_crsf, name="api-crsf"),
+    path("login/", views.loginView, name="api-login")
+
 ]
 
 # router.register(r"crsf", views.SetCrsfToken, basename="crsf")

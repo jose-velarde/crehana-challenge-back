@@ -155,10 +155,6 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"],
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
-    ],
     "DEFAULT_PAGINATION_CLASS": "core.pagination.CustomPagination",
     "PAGE_SIZE": 12,
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
@@ -169,12 +165,12 @@ CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_HTTPONLY = True
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_AGE = 8 * 3600
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 
 SESSION_COOKIE_SAMESITE = "None"
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_AGE = 8 * 3600
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:3000",
