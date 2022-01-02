@@ -3,15 +3,16 @@ import json
 from django.contrib.auth import authenticate, login, logout
 from django.http.response import JsonResponse
 from django.middleware.csrf import get_token
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_POST
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 
-# Create your views here.
+@ensure_csrf_cookie
 def get_crsf(request):
-    response = JsonResponse({"Info": "Success - Set CRSF cookie"})
+    response = JsonResponse({'detail': 'CSRF cookie set'})
     response["X-CRSFToken"] = get_token(request)
     # response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
 
@@ -25,14 +26,14 @@ def login_view(request):
     password = data.get("password")
 
     if username is None or password is None:
-        return JsonResponse({"info": "Username and Password are requried"})
+        return JsonResponse({'detail': 'Please provide username and password.'}, status=400)
 
     user = authenticate(username=username, password=password)
 
     if user is None:
-        return JsonResponse({"info": "Username does not exist"}, status=400)
+        return JsonResponse({'detail': 'Invalid credentials.'}, status=400)
     login(request, user)
-    return JsonResponse({"info": "User logged in successfully"})
+    return JsonResponse({'detail': 'Successfully logged in.'})
 
 def logout_view(request):
     if not request.user.is_authenticated:
