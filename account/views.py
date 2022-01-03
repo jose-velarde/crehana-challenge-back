@@ -10,7 +10,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from django.conf import settings
 
-@ensure_csrf_cookie
 def get_csrf(request):
     # response = JsonResponse({'detail': 'CSRF cookie set'})
     # response["X-CRSFToken"] = get_token(request)
