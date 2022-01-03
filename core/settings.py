@@ -203,8 +203,12 @@ CORS_ALLOWED_ORIGINS = [
     "https://crehana-challenge-front.vercel.app",
 ]
 
-CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken", "Set-Cookie"]
+CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
+from corsheaders.defaults import default_headers
 
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'X-CSRFTOKEN',
+]
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
 

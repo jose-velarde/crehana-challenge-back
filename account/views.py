@@ -8,15 +8,19 @@ from django.views.decorators.http import require_POST
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-
+from django.conf import settings
 
 @ensure_csrf_cookie
-def get_crsf(request):
-    response = JsonResponse({'detail': 'CSRF cookie set'})
-    response["X-CRSFToken"] = get_token(request)
-    # response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+def get_csrf(request):
+    # response = JsonResponse({'detail': 'CSRF cookie set'})
+    # response["X-CRSFToken"] = get_token(request)
+    # return response
+    # print(settings.CSRF_COOKIE_NAME)
 
-    return response
+    return JsonResponse({'csrfToken': get_token(request)})
+
+def ping(request):
+    return JsonResponse({'result': 'OK'})
 
 
 @require_POST
